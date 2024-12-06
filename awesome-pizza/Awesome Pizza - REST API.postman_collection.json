@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "d26556cc-aec2-4c83-8f43-aaf2e75ec72b",
+		"name": "Awesome Pizza - REST API",
+		"description": "# 🚀 Get started here\n\nThis guides you through API operations on Awesome Pizza platform.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5812466"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Post New Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"name_f138ccc5edb1\",\n  \"surname\": \"surname_aa3da5718f58\",\n  \"address\": \"address_313e60e5f45e\",\n  \"city\": \"city_7ca22575eaa2\",\n  \"zipCode\": \"zipCode_fc0510b4af22\",\n  \"county\": \"county_d6586471930d\",\n  \"orderedPizzaIdSizeList\": [\n    {\n      \"id\": 0,\n      \"size\": \"BABY\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/customer/order",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"order"
+							]
+						},
+						"description": "This is a POST request, submitting data to the API via the request body. This save the order and related details to DB and add the pizzas to the queue.\n\nA successful POST request typically returns a `200 OK`."
+					},
+					"response": []
+				},
+				{
+					"name": "Monitor Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/customer/monitoring/{{order_code}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"monitoring",
+								"{{order_code}}"
+							]
+						},
+						"description": "This is a GET to retrive the status of the specified order. The order code is passed as path parameter"
+					},
+					"response": []
+				}
+			],
+			"description": "Api to expose to the customer"
+		},
+		{
+			"name": "Pizza Chef",
+			"item": [
+				{
+					"name": "Get Pizza",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/pizza-chef/pizza",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"pizza-chef",
+								"pizza"
+							]
+						},
+						"description": "This is a GET request and it is used to get an element from the queue. There is no request body or parameter.\n\nA successful GET response will have a `200 OK` status, and should include the details of the actual pizza to prepare"
+					},
+					"response": []
+				}
+			],
+			"description": "Api to expose to the Pizza Chef"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "order_code",
+			"value": "ASPIZZA-20241206005358-1",
+			"type": "string"
+		}
+	]
+}

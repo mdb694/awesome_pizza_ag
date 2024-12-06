@@ -1,0 +1,51 @@
+@startuml
+Pizza "1" -- "many" Ingredient : contains
+OrderedPizza "1" -- "1" Pizza : referTo
+Order "1" -- "many" OrderedPizza : contains
+Order "1" -- "1" User : contains
+
+
+class Ingredient {
+- String name
+- String code
+}
+
+class Pizza {
+- String name
+- BigDecimal price
+}
+
+class OrderedPizza {
+- PizzaSize size
+- String note
+}
+
+class OrderOwner {
+- String name
+- String surname
+- String address
+- String city
+- String zipCode
+- String county
+}
+
+class PizzaOrder {
+- String code
+- OrderStatus status
+}
+
+enum PizzaSize {
+BABY
+NORMAL
+}
+
+enum OrderStatus {
+PLACED
+ACCEPTED
+REJECTED
+WORK_IN_PROGRESS
+READY_TO_DELIVER
+DELIVERED
+}
+
+@enduml

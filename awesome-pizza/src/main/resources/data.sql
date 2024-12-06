@@ -1,0 +1,26 @@
+insert into "PUBLIC"."INGREDIENT" ("CREATED_AT","INGREDIENT_ID","MODIFIED_AT","CODE","DESCRIPTION","NAME")
+values (NOW(), 1, NOW(), 'POM001', 'Pomodoro San Marzano', 'Pomodoro');
+insert into "PUBLIC"."INGREDIENT" ("CREATED_AT","INGREDIENT_ID","MODIFIED_AT","CODE","DESCRIPTION","NAME")
+values (NOW(), 2, NOW(), 'MOZ001', 'Mozzarella', 'Mozzarella');
+insert into "PUBLIC"."INGREDIENT" ("CREATED_AT","INGREDIENT_ID","MODIFIED_AT","CODE","DESCRIPTION","NAME")
+values (NOW(), 3, NOW(), 'PRO001', 'Prosciutto', 'Prosciutto');
+insert into "PUBLIC"."INGREDIENT" ("CREATED_AT","INGREDIENT_ID","MODIFIED_AT","CODE","DESCRIPTION","NAME")
+values (NOW(), 4, NOW(), 'FUN001', 'Funghi', 'Funghi');
+
+insert into "PUBLIC"."PIZZA" ("PRICE","CREATED_AT","MODIFIED_AT","PIZZA_ID","NAME")
+values (5, NOW(), NOW(), 1, 'Margherita');
+insert into "PUBLIC"."PIZZA" ("PRICE","CREATED_AT","MODIFIED_AT","PIZZA_ID","NAME")
+values (6.5, NOW(), NOW(), 2, 'Prosciutto e Funghi');
+
+insert into "PUBLIC"."PIZZA_INGREDIENT_SET" ("INGREDIENT_SET_INGREDIENT_ID","PIZZA_PIZZA_ID")
+values(1, 1);
+insert into "PUBLIC"."PIZZA_INGREDIENT_SET" ("INGREDIENT_SET_INGREDIENT_ID","PIZZA_PIZZA_ID")
+values(2, 1);
+insert into "PUBLIC"."PIZZA_INGREDIENT_SET" ("INGREDIENT_SET_INGREDIENT_ID","PIZZA_PIZZA_ID")
+values(1, 2);
+insert into "PUBLIC"."PIZZA_INGREDIENT_SET" ("INGREDIENT_SET_INGREDIENT_ID","PIZZA_PIZZA_ID")
+values(2, 2);
+insert into "PUBLIC"."PIZZA_INGREDIENT_SET" ("INGREDIENT_SET_INGREDIENT_ID","PIZZA_PIZZA_ID")
+values(3, 2);
+insert into "PUBLIC"."PIZZA_INGREDIENT_SET" ("INGREDIENT_SET_INGREDIENT_ID","PIZZA_PIZZA_ID")
+values(4, 2);
