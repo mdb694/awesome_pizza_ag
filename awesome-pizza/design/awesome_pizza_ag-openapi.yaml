@@ -1,0 +1,117 @@
+openapi: "3.1.0"
+info:
+  title: "awesome_pizza_ag API"
+  description: "awesome_pizza_ag API"
+  version: "1.0.0"
+servers:
+  - url: "https://awesome_pizza_ag"
+paths:
+  /api/v1/customer/monitoring/{orderCode}:
+    get:
+      summary: "GET api/v1/customer/monitoring/{orderCode}"
+      operationId: "getPizzaOrderStatus"
+      parameters:
+        - name: "orderCode"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PizzaOrderStatusDto"
+  /api/v1/customer/order:
+    post:
+      summary: "POST api/v1/customer/order"
+      operationId: "placePizzaOrder"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PizzaOrderDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PizzaOrderStatusDto"
+  /api/v1/pizza-chef/pizza:
+    get:
+      summary: "GET api/v1/pizza-chef/pizza"
+      operationId: "getPizza"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PizzaToPrepareDto"
+components:
+  schemas:
+    PizzaOrderStatusDto:
+      type: "object"
+      properties:
+        code:
+          type: "string"
+        status:
+          type: "string"
+          enum:
+            - "PLACED"
+            - "ACCEPTED"
+            - "REJECTED"
+            - "WORK_IN_PROGRESS"
+            - "READY_TO_DELIVER"
+            - "DELIVERED"
+    PizzaOrderedDto:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        size:
+          type: "string"
+          enum:
+            - "BABY"
+            - "NORMAL"
+    PizzaOrderDto:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        surname:
+          type: "string"
+        address:
+          type: "string"
+        city:
+          type: "string"
+        zipCode:
+          type: "string"
+        county:
+          type: "string"
+        orderedPizzaIdSizeList:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/PizzaOrderedDto"
+    PizzaToPrepareDto:
+      type: "object"
+      properties:
+        customerName:
+          type: "string"
+        customerSurname:
+          type: "string"
+        orderCode:
+          type: "string"
+        pizzaSize:
+          type: "string"
+          enum:
+            - "BABY"
+            - "NORMAL"
+        pizzaName:
+          type: "string"
+        ingredients:
+          type: "string"
